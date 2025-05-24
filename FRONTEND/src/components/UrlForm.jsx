@@ -6,6 +6,7 @@ const UrlForm = () => {
   const [url, setUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
   const [loading, setLoading] = useState(false);
+  const [copy,setCopy] = useState(false)
 
   const handleOnClick = async (e) => {
     e.preventDefault();
@@ -21,6 +22,8 @@ const UrlForm = () => {
   };
 
   return (
+    <>
+    <div className="flex flex-col items-center gap-4 w-full max-w-md mx-auto p-6 bg-white rounded-lg shadow">
     <form
       onSubmit={handleOnClick}
       className="flex flex-col items-center gap-4 w-full max-w-md mx-auto p-6 bg-white rounded-lg shadow"
@@ -48,8 +51,10 @@ const UrlForm = () => {
         {loading ? 'Shortening...' : 'Short URL'}
       </button>
 
-      {shortUrl && (
-        <div className="mt-4 text-center">
+    </form>
+    {shortUrl && (
+        <div className="flex justify-between px-10 py-4 gap-4 items-center mt-4 text-center w-full rounded-2xl   bg-blue-100">
+          <div className="flex flex-col justify-center">
           <p className="text-gray-700 font-medium">Short URL:</p>
           <a
             href={shortUrl}
@@ -59,9 +64,24 @@ const UrlForm = () => {
           >
             {shortUrl}
           </a>
+          </div>
+          <button 
+            onClick={async()=>{
+              
+              navigator.clipboard.writeText(shortUrl)
+              setCopy(true)
+              setTimeout(()=>{
+                setCopy(false)
+              }, 1000)
+              
+            }} 
+            className= {`px-4 py-2 bg-blue-600 ${copy ? 'bg-green-500' : 'bg-blue-600'} text-white rounded-2xl cursor-pointer active:bg-blue-300 transition-bg-blue-300 duration-300`}>{!copy ? 'Copy' : 'Copied'}</button>
+          
         </div>
+        
       )}
-    </form>
+      </div>
+    </>
   );
 };
 
