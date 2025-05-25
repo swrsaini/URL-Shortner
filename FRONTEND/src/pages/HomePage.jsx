@@ -3,9 +3,9 @@ import UrlForm from '../components/UrlForm'
 
 const HomePage = () => {
   return (
-    <div className="w-screen h-screen flex justify-center items-center bg-amber-50">
-  <UrlForm />
-</div>
+    <div className="w-screen h-auto mt-30  flex justify-center">
+      <UrlForm />
+    </div>
 
   )
 }

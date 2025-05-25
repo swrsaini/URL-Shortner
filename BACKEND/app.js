@@ -8,7 +8,7 @@ import auth_router from './src/routes/auth.routes.js';
 import { redirectFromShortUrl } from './src/controller/shortUrl.controller.js';
 import { errorHandler } from './src/utils/errorHandler.js';
 import cors from 'cors'
-
+import userRouter from './src/routes/user.route.js';
 import cookieParser from 'cookie-parser';
 import { attachUser } from './src/utils/attachUser.js';
 
@@ -27,6 +27,7 @@ app.use(attachUser)
 
 app.use('/api/create',shortUrl_router)
 app.use('/api/auth',auth_router)
+app.use('/api/user',userRouter)
 
 app.get('/:id',redirectFromShortUrl)
 

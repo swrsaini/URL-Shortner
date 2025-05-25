@@ -28,3 +28,7 @@ export const getCustomShortUrl = async(slug)=>{
     return await urlSchema.findOne({short_url: slug})
     
 }
+
+export const getUserUrls = async(userId)=>{
+    return await urlSchema.find({userId}).sort({createdAt:-1})
+}
