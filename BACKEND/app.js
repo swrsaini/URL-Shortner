@@ -14,7 +14,10 @@ import { attachUser } from './src/utils/attachUser.js';
 
 dotenv.config({path: './.env'})
 const app = express();
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:5173', // frontend origin
+  credentials: true, // <-- important
+}));
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(errorHandler)
