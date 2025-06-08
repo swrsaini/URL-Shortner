@@ -14,7 +14,7 @@ const UserUrls = () => {
   const [page, setPage] = useState(1);
   const urlsPerPage = 10;
   const totalPages = Math.ceil(urls.length / urlsPerPage);
-  const paginatedUrls = urls.slice((page - 1) * urlsPerPage, page * urlsPerPage);
+  const paginatedUrls = urls.slice().reverse().slice((page - 1) * urlsPerPage, page * urlsPerPage);
 
   // Analytics modal state
   const [selectedUrl, setSelectedUrl] = useState(null);
