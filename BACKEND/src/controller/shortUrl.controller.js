@@ -1,4 +1,4 @@
-import { getShortUrl } from "../dao/shortUrl.js";
+import { getShortUrl, saveCLick } from "../dao/shortUrl.js";
 import { createShortUrlWithoutUser, createShortUrlWithUser } from "../services/shortUrl.service.js";
 import wrapAsync from "../utils/tryCatchWrapper.js";
 
@@ -29,7 +29,7 @@ export const redirectFromShortUrl = wrapAsync(async(req,res)=>{
     const {id} = req.params
     const url = await getShortUrl(id)
     if(url){
-        
+        saveCLick(req,id);
         return res.redirect(url.full_url);
     }
     else{

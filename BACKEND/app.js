@@ -14,6 +14,8 @@ import { attachUser } from './src/utils/attachUser.js';
 
 dotenv.config({path: './.env'})
 const app = express();
+// Trust proxy to get correct client IP from x-forwarded-for
+app.set('trust proxy', true);
 app.use(cors({
   origin: 'http://localhost:5173', // frontend origin
   credentials: true, // <-- important
