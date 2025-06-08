@@ -1,4 +1,4 @@
-import { get } from "mongoose";
+
 import { getCurrentUser } from "../api/user.api";
 import { login } from "../store/slice/authSlice";
 import { redirect } from "@tanstack/react-router";

@@ -29,7 +29,11 @@ export const redirectFromShortUrl = wrapAsync(async(req,res)=>{
     const {id} = req.params
     const url = await getShortUrl(id)
     if(url){
-        saveCLick(req,id);
+        try {
+          await saveCLick(req, id); // Await and catch errors
+        } catch (err) {
+          console.error('Error saving click analytics:', err);
+        }
         return res.redirect(url.full_url);
     }
     else{

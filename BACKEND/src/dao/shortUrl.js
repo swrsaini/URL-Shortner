@@ -91,6 +91,7 @@ export const saveCLick = async (req,short_url) => {
     location,
     device,
     timestamp,
+    userId: url.userId || undefined, // Attach userId if present on the shortUrl
   });
 
   await clickData.save();

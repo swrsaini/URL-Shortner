@@ -1,15 +1,18 @@
 import React from 'react'
-import { Link } from '@tanstack/react-router'
+import { Link, useNavigate } from '@tanstack/react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../store/slice/authSlice'
+import { logoutUser } from '../api/user.api'
 
 const Navbar = () => {
   const auth = useSelector(state => state.auth)
   const dispatch = useDispatch()
+  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    dispatch(logout())
-    // Optionally, you can redirect or call an API to log out on the backend
+  const handleLogout = async () => {
+    await logoutUser();
+    dispatch(logout());
+    navigate({ to: '/' });
   }
 
   return (
